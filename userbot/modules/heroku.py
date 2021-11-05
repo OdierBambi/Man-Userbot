@@ -16,7 +16,6 @@ from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME, bot
 from userbot.events import man_cmd
 from userbot.utils import edit_or_reply
-from userbot.modules.sql_helper.globals import gvarstatus
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 heroku_api = "https://api.heroku.com"
