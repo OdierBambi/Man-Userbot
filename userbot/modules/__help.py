@@ -19,7 +19,6 @@
 from telethon.errors.rpcerrorlist import BotInlineDisabledError as noinline
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import BOT_USERNAME
 from userbot import CMD_HANDLER as cmd
 from userbot import bot
 from userbot.events import man_cmd
