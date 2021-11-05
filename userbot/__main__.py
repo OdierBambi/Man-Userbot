@@ -50,7 +50,7 @@ async def autobot():
         return addgvar("BOT_TOKEN", BOT_TOKEN)
     await bot.start()
     LOGS.info("MAKING A TELEGRAM BOT FOR YOU AT @BotFather, Kindly Wait")
-    who = bot.me
+    who = bot.get_me()
     name = who.first_name + "'s Assistant Bot"
     if who.username:
         username = who.username + "_bot"
