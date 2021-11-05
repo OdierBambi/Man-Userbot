@@ -212,6 +212,22 @@ async def _(dyno):
     return os.remove("Logs.txt")
 
 
+@bot.on(man_cmd(outgoing=True, pattern=r"gvar ?(.*)"))
+async def gett(event):
+    var_ = event.pattern_match.group(1).upper()
+    xxnx = await edit_or_reply(event, f"**Getting variable** `{var_}`")
+    if var_ == "":
+        return await xxnx.edit(f"**Invalid Syntax !!** \n\nTry: `{hl}gvar VARIABLE_NAME`")
+    if var_ not in config_list:
+        return await xxnx.edit(f"__There isn't any variable named__ `{var_}`. __Check spelling or get full list by `{hl}vars`")
+    try:
+        sql_v = gvarstat(var_)
+        os_v = os.environ.get(var_) or "None"
+    except Exception as e:
+        return await xxnx.edit(f"**ERROR !!** \n\n`{e}`")
+    await xxnx.edit(f"**OS VARIABLE:** `{var_}`\n**OS VALUE :** `{os_v}`\n------------------\n**SQL VARIABLE:** `{var_}`\n**SQL VALUE :** `{sql_v}`\n")
+
+
 CMD_HELP.update(
     {
         "heroku": f"**Plugin : **`heroku`\
