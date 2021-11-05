@@ -102,6 +102,7 @@ async def autobot():
             await asyncio.sleep(1)
             await bot.send_message(bf, "Search")
             LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
+            await bot.send_message(bf, f".set var BOT_TOKEN {token}")
         else:
             LOGS.info(
                 "Please Delete Some Of your Telegram bots at @Botfather or Set Var BOT_TOKEN with token of a bot"
@@ -116,7 +117,9 @@ async def autobot():
         await bot.send_message(bf, f"@{username}")
         await asyncio.sleep(1)
         await bot.send_message(bf, "Search")
+        await asyncio.sleep(3)
         LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
+        await bot.send_message(bf, f".set var BOT_TOKEN {token}")
     else:
         LOGS.info(
             "Please Delete Some Of your Telegram bots at @Botfather or Set Var BOT_TOKEN with token of a bot"
