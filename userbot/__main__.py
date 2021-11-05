@@ -15,7 +15,7 @@ from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.contacts import UnblockRequest
 
-from userbot import ALIVE_NAME, BOT_TOKEN, BOT_VER, BOTLOG_CHATID
+from userbot import ALIVE_NAME, BOT_TOKEN, BOT_USERNAME, BOT_VER, BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
 from userbot import LOGS, UPSTREAM_REPO_BRANCH, bot, call_py
 from userbot.modules import ALL_MODULES
@@ -95,6 +95,7 @@ async def autobot():
         if nowdone.startswith("Done!"):
             token = nowdone.split("`")[1]
             addgvar("BOT_TOKEN", token)
+            addgvar("BOT_USERNAME", username)
             await bot.send_message(bf, "/setinline")
             await asyncio.sleep(1)
             await bot.send_message(bf, f"@{username}")
@@ -109,6 +110,7 @@ async def autobot():
     elif isdone.startswith("Done!"):
         token = isdone.split("`")[1]
         addgvar("BOT_TOKEN", token)
+        addgvar("BOT_USERNAME", username)
         await bot.send_message(bf, "/setinline")
         await asyncio.sleep(1)
         await bot.send_message(bf, f"@{username}")
