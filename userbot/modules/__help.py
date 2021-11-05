@@ -23,13 +23,14 @@ from userbot import BOT_USERNAME
 from userbot import CMD_HANDLER as cmd
 from userbot import bot
 from userbot.events import man_cmd
+from userbot.modules.sql_helper.globals import gvarstatus
 
 
 @bot.on(man_cmd(pattern="helpme", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
-    tgbotusername = BOT_USERNAME
+    tgbotusername = gvarstatus("BOT_USERNAME")
     if tgbotusername is not None:
         chat = "@Botfather"
         try:
