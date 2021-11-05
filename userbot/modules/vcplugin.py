@@ -188,7 +188,7 @@ async def vc_play(event):
                 ),
                 stream_type=StreamType().pulse_stream,
             )
-            add_to_queue(chat_id, songname, dl, link, "Audio", 0)
+            add_to_queue(chat_id, songname, dl, "Audio", 0)
             await botman.edit(
                 f"🏷 **Judul: {songname}**\n**👥 Chat ID:** `{chat_id}`\n💡 **Status:** `Sedang Memutar`\n🎧 **Atas permintaan:** {from_user}",
                 link_preview=False,
