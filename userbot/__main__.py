@@ -94,7 +94,6 @@ async def autobot():
         nowdone = (await bot.get_messages(bf, limit=1))[0].text
         if nowdone.startswith("Done!"):
             token = nowdone.split("`")[1]
-            addgvar("BOT_TOKEN", token)
             addgvar("BOT_USERNAME", f"@{username}")
             await bot.send_message(bf, "/setinline")
             await asyncio.sleep(1)
@@ -103,7 +102,7 @@ async def autobot():
             await bot.send_message(bf, "Search")
             await asyncio.sleep(2)
             LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
-            await bot.send_message(bf, f".set var BOT_TOKEN {token}")
+            await bot.send_message(BOTLOG_CHATID, f".set var BOT_TOKEN {token}")
         else:
             LOGS.info(
                 "Please Delete Some Of your Telegram bots at @Botfather or Set Var BOT_TOKEN with token of a bot"
@@ -111,7 +110,6 @@ async def autobot():
             sys.exit(1)
     elif isdone.startswith("Done!"):
         token = isdone.split("`")[1]
-        addgvar("BOT_TOKEN", token)
         addgvar("BOT_USERNAME", f"@{username}")
         await bot.send_message(bf, "/setinline")
         await asyncio.sleep(1)
@@ -120,7 +118,7 @@ async def autobot():
         await bot.send_message(bf, "Search")
         await asyncio.sleep(2)
         LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
-        await bot.send_message(bf, f".set var BOT_TOKEN {token}")
+        await bot.send_message(BOTLOG_CHATID, f".set var BOT_TOKEN {token}")
     else:
         LOGS.info(
             "Please Delete Some Of your Telegram bots at @Botfather or Set Var BOT_TOKEN with token of a bot"
