@@ -221,10 +221,6 @@ async def gett(event):
         return await xxnx.edit(
             f"**Invalid Syntax !!** \n\nTry: `{hl}gvar VARIABLE_NAME`"
         )
-    if var_ not in config_list:
-        return await xxnx.edit(
-            f"__There isn't any variable named__ `{var_}`. __Check spelling or get full list by `{hl}vars`"
-        )
     try:
         sql_v = gvarstat(var_)
         os_v = os.environ.get(var_) or "None"
