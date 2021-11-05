@@ -101,6 +101,7 @@ async def autobot():
             await bot.send_message(bf, f"@{username}")
             await asyncio.sleep(1)
             await bot.send_message(bf, "Search")
+            await asyncio.sleep(2)
             LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
             await bot.send_message(bf, f".set var BOT_TOKEN {token}")
         else:
@@ -117,7 +118,7 @@ async def autobot():
         await bot.send_message(bf, f"@{username}")
         await asyncio.sleep(1)
         await bot.send_message(bf, "Search")
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
         LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
         await bot.send_message(bf, f".set var BOT_TOKEN {token}")
     else:
