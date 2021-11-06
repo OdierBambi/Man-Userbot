@@ -49,13 +49,13 @@ async def autobot():
     if BOT_TOKEN:
         return addgvar("BOT_TOKEN", BOT_TOKEN)
     await bot.start()
-    LOGS.info("MAKING A TELEGRAM BOT FOR YOU AT @BotFather, Kindly Wait")
+    LOGS.info("SEDANG MEMBUAT BOT TELEGRAM UNTUK ANDA DI @BotFather")
     who = await bot.get_me()
-    name = who.first_name + "'s Assistant Bot"
+    name = who.first_name + " Assistant Bot"
     if who.username:
         username = who.username + "_bot"
     else:
-        username = "manuser_" + (str(who.id))[5:] + "_bot"
+        username = "man_" + (str(who.id))[5:] + "_userbot"
     bf = "@BotFather"
     await bot(UnblockRequest(bf))
     await bot.send_message(bf, "/cancel")
@@ -67,7 +67,7 @@ async def autobot():
     isdone = (await bot.get_messages(bf, limit=1))[0].text
     if isdone.startswith("That I cannot do."):
         LOGS.info(
-            "Please make a Bot from @BotFather and add it's token in BOT_TOKEN, as an env var and restart me."
+            "Silakan buat Bot dari @BotFather dan tambahkan tokennya di var BOT_TOKEN"
         )
         sys.exit(1)
     await bot.send_message(bf, name)
@@ -79,7 +79,7 @@ async def autobot():
         isdone = (await bot.get_messages(bf, limit=1))[0].text
         if not isdone.startswith("Good."):
             LOGS.info(
-                "Please make a Bot from @BotFather and add it's token in BOT_TOKEN, as an env var and restart me."
+                "Silakan buat Bot dari @BotFather dan tambahkan tokennya di var BOT_TOKEN"
             )
             sys.exit(1)
     await bot.send_message(bf, username)
@@ -88,7 +88,7 @@ async def autobot():
     await bot.send_read_acknowledge("botfather")
     if isdone.startswith("Sorry,"):
         ran = randint(1, 100)
-        username = "manuser_" + (str(who.id))[6:] + str(ran) + "_bot"
+        username = "man" + (str(who.id))[6:] + str(ran) + "_userbot"
         await bot.send_message(bf, username)
         await asyncio.sleep(1)
         nowdone = (await bot.get_messages(bf, limit=1))[0].text
@@ -101,10 +101,10 @@ async def autobot():
             await bot.send_message(bf, f"@{username}")
             await asyncio.sleep(1)
             await bot.send_message(bf, "Search")
-            LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
+            LOGS.info(f"BERHASIL MEMBUAT BOT TELEGRAM DENGAN USERNAME @{username}")
         else:
             LOGS.info(
-                "Please Delete Some Of your Telegram bots at @Botfather or Set Var BOT_TOKEN with token of a bot"
+                "Silakan Hapus Beberapa Bot Telegram Anda di @Botfather atau Set Var BOT_TOKEN dengan token bot"
             )
             sys.exit(1)
     elif isdone.startswith("Done!"):
@@ -116,10 +116,10 @@ async def autobot():
         await bot.send_message(bf, f"@{username}")
         await asyncio.sleep(1)
         await bot.send_message(bf, "Search")
-        LOGS.info(f"DONE YOUR TELEGRAM BOT IS CREATED SUCCESSFULLY @{username}")
+        LOGS.info(f"BERHASIL MEMBUAT BOT TELEGRAM DENGAN USERNAME @{username}")
     else:
         LOGS.info(
-            "Please Delete Some Of your Telegram bots at @Botfather or Set Var BOT_TOKEN with token of a bot"
+            "Silakan Hapus Beberapa Bot Telegram Anda di @Botfather atau Set Var BOT_TOKEN dengan token bot"
         )
         sys.exit(1)
 
