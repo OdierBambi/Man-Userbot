@@ -432,8 +432,8 @@ try:
     from userbot.modules.sql_helper.globals import delgvar, gvarstatus
 
     bottoken = gvarstatus("BOT_TOKEN")
-    with bot:
-        try:
+with bot:
+    try:
         tgbot = TelegramClient(
             "TG_BOT_TOKEN",
             api_id=API_KEY,
