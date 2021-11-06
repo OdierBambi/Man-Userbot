@@ -47,8 +47,10 @@ LOGS.info(
 
 LOGS.info(f"Man-Userbot ⚙️ V{BOT_VER} [🔥 BERHASIL DIAKTIFKAN! 🔥]")
 
+
 def run_in_loop(bot, function):
     return bot.loop.run_until_complete(function)
+
 
 async def autobot():
     if gvarstatus("BOT_TOKEN"):
