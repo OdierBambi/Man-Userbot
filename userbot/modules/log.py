@@ -11,9 +11,9 @@ from userbot import BOTLOG, BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, LOGS, bot
 from userbot.events import man_cmd
-from userbot.modules.vcplugin import vcmention
 from userbot.modules.sql_helper import no_log_pms_sql
 from userbot.modules.sql_helper.globals import addgvar, gvarstatus
+from userbot.modules.vcplugin import vcmention
 from userbot.utils import _format, edit_delete
 from userbot.utils.logger import logging
 from userbot.utils.tools import media_type
@@ -43,7 +43,9 @@ async def logaddjoin(event):
         chat = f"[{chat.title}](https://t.me/c/{chat.id}/{event.action_message.id})"
     if event.user_added:
         tmp = event.added_by
-        text = f"**#ADD_LOG**\n\n{vcmention(tmp)} just added {vcmention(user)} to {chat}."
+        text = (
+            f"**#ADD_LOG**\n\n{vcmention(tmp)} just added {vcmention(user)} to {chat}."
+        )
     elif event.user_joined:
         text = f"**#JOIN_LOG**\n\n[{user.first_name}](tg://user?id={user.id}) just joined {chat}."
     else:
