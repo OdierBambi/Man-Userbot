@@ -30,7 +30,6 @@ from telethon.sessions import StringSession
 from telethon.sync import TelegramClient, custom, events
 from telethon.tl.types import InputWebDocument
 
-from .modules.sql_helper.globals import gvarstatus
 from .storage import Storage
 
 
