@@ -43,9 +43,7 @@ async def logaddjoin(event):
         chat = f"[{chat.title}](https://t.me/c/{chat.id}/{event.action_message.id})"
     if event.user_added:
         tmp = event.added_by
-        text = (
-            f"📩 **#ADD_LOG\n •** {vcmention(tmp)} **Menambahkan** {vcmention(user)}\n **• Ke Group** {chat}."
-        )
+        text = f"📩 **#ADD_LOG\n •** {vcmention(tmp)} **Menambahkan** {vcmention(user)}\n **• Ke Group** {chat}."
     elif event.user_joined:
         text = f"📨 **#JOIN_LOG\n •** [{user.first_name}](tg://user?id={user.id}) **Bergabung\n • Ke Group** {chat}."
     else:
