@@ -428,9 +428,11 @@ def paginate_help(page_number, loaded_modules, prefix):
         ]
     return pairs
 
+
 with bot:
     try:
         from userbot.modules.sql_helper.globals import gvarstatus
+
         tgbot = TelegramClient(
             "TG_BOT_TOKEN",
             api_id=API_KEY,
