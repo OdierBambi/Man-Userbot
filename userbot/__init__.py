@@ -284,8 +284,8 @@ API_TOKEN = os.environ.get("API_TOKEN", None)
 API_URL = os.environ.get("API_URL", "http://antiddos.systems")
 
 # Inline bot helper
-BOT_TOKEN = gvarstatus("BOT_TOKEN")
-BOT_USERNAME = gvarstatus("BOT_USERNAME")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
+BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
@@ -319,10 +319,10 @@ try:
         auto_reconnect=True,
         connection_retries=None,
     )
+    call_py = PyTgCalls(bot)
 except Exception as e:
     print(f"STRING_SESSION - {e}")
     sys.exit()
-call_py = PyTgCalls(bot)
 
 
 async def check_botlog_chatid():
