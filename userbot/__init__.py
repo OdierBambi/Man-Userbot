@@ -29,6 +29,7 @@ from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient, custom, events
 from telethon.tl.types import InputWebDocument
+from userbot.modules.sql_helper.globals import gvarstatus
 
 from .storage import Storage
 
@@ -283,8 +284,8 @@ API_TOKEN = os.environ.get("API_TOKEN", None)
 API_URL = os.environ.get("API_URL", "http://antiddos.systems")
 
 # Inline bot helper
-BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
-BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
+BOT_TOKEN = gvarstatus("BOT_TOKEN")
+BOT_USERNAME = gvarstatus("BOT_USERNAME")
 
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
