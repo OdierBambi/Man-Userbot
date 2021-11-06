@@ -44,10 +44,10 @@ async def logaddjoin(event):
     if event.user_added:
         tmp = event.added_by
         text = (
-            f"**#ADD_LOG**\n\n{vcmention(tmp)} just added {vcmention(user)} to {chat}."
+            f"📩 **#ADD_LOG\n •** {vcmention(tmp)} **Menambahkan** {vcmention(user)}\n **• Ke Group** {chat}."
         )
     elif event.user_joined:
-        text = f"**#JOIN_LOG**\n\n[{user.first_name}](tg://user?id={user.id}) just joined {chat}."
+        text = f"📨 **#JOIN_LOG\n •** [{user.first_name}](tg://user?id={user.id}) **Bergabung\n • Ke Group** {chat}."
     else:
         return
     await bot.send_message(BOTLOG_CHATID, text)
