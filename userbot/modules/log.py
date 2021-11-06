@@ -50,7 +50,7 @@ async def logaddjoin(event):
         text = f"📨 **#JOIN_LOG\n •** [{user.first_name}](tg://user?id={user.id}) **Bergabung\n • Ke Group** {chat}."
     else:
         return
-    await bot.send_message(BOTLOG_CHATID, text)
+    await event.client.send_message(BOTLOG_CHATID, text)
 
 
 @bot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
