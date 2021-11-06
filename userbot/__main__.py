@@ -3,6 +3,11 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
+# Copyright (C) 2021 TeamUltroid for autobot
+# Recode by @mrismanaziz
+# FROM Man-Userbot <https://github.com/mrismanaziz/Man-Userbot>
+# t.me/SharingUserbot & t.me/Lunatic0de
+#
 """ Userbot start point """
 
 import asyncio
@@ -55,7 +60,7 @@ async def autobot():
     if who.username:
         username = who.username + "_bot"
     else:
-        username = "man_" + (str(who.id))[5:] + "_userbot"
+        username = "man" + (str(who.id))[5:] + "_userbot"
     bf = "@BotFather"
     await bot(UnblockRequest(bf))
     await bot.send_message(bf, "/cancel")
