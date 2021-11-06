@@ -19,6 +19,7 @@
 from telethon.errors.rpcerrorlist import BotInlineDisabledError as noinline
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
+from userbot import BOT_USERNAME
 from userbot import CMD_HANDLER as cmd
 from userbot import bot
 from userbot.events import man_cmd
@@ -29,7 +30,7 @@ from userbot.modules.sql_helper.globals import gvarstatus
 async def _(event):
     if event.fwd_from:
         return
-    tgbotusername = gvarstatus("BOT_USERNAME")
+    tgbotusername = BOT_USERNAME
     if tgbotusername is not None:
         chat = "@Botfather"
         try:
