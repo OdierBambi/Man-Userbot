@@ -11,18 +11,13 @@ from importlib import import_module
 from random import randint
 
 from pytgcalls import idle
-from telethon.errors.rpcerrorlist import ChannelsTooMuchError, PhoneNumberInvalidError
-from telethon.tl.functions.channels import (
-    CreateChannelRequest,
-    EditAdminRequest,
-    JoinChannelRequest,
-)
+from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
+from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.contacts import UnblockRequest
-from telethon.tl.types import ChatAdminRights
 
 from userbot import ALIVE_NAME, BOT_TOKEN, BOT_VER, BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
-from userbot import LOGS, UPSTREAM_REPO_BRANCH, bot, call_py, tgbot
+from userbot import LOGS, UPSTREAM_REPO_BRANCH, bot, call_py
 from userbot.modules import ALL_MODULES
 from userbot.modules.sql_helper.globals import addgvar, gvarstatus
 
@@ -130,58 +125,6 @@ async def autobot():
 
 
 bot.loop.create_task(autobot())
-
-
-async def autopilot():
-    if BOTLOG_CHATID and str(BOTLOG_CHATID).startswith("-100"):
-        addgvar("BOTLOG_CHATID", str(BOTLOG_CHATID))
-    if gvarstatus("BOTLOG_CHATID"):
-        try:
-            await bot.get_entity(int(gvarstatus("BOTLOG_CHATID")))
-            return
-        except BaseException as er:
-            LOGS.error(er)
-            delgvar("BOTLOG_CHATID")
-    LOGS.info("Creating a Log Userbot for You!")
-    try:
-        r = await bot(
-            CreateChannelRequest(
-                title="My Userbot Logs",
-                about="My Userbot Log Group\n\n Join @SharingUserbot",
-                megagroup=True,
-            ),
-        )
-    except ChannelsTooMuchError:
-        LOGS.info(
-            "You Are in Too Many Channels & Groups , Leave some And Restart The Bot"
-        )
-        exit(1)
-    except BaseException as er:
-        LOGS.info(er)
-        LOGS.info(
-            "Something Went Wrong , Create A Group and set its id on config var BOTLOG_CHATID."
-        )
-        exit(1)
-    chat = r.chats[0]
-    chat_id = chat.id
-    if not str(chat_id).startswith("-100"):
-        addgvar("BOTLOG_CHATID", "-100" + str(chat_id))
-    else:
-        addgvar("BOTLOG_CHATID", str(chat_id))
-    rights = ChatAdminRights(
-        add_admins=True,
-        invite_users=True,
-        change_info=True,
-        ban_users=True,
-        delete_messages=True,
-        pin_messages=True,
-        anonymous=False,
-        manage_call=True,
-    )
-    await bot(EditAdminRequest(chat_id, tgbot.me.username, rights, "Assistant"))
-
-
-bot.loop.create_task(autopilot())
 
 
 async def man_userbot_on():
