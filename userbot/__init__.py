@@ -428,7 +428,8 @@ def paginate_help(page_number, loaded_modules, prefix):
         ]
     return pairs
 
-
+try:
+    from userbot.modules.sql_helper.globals import gvarstatus
 with bot:
     try:
         tgbot = TelegramClient(
@@ -438,7 +439,7 @@ with bot:
             connection=ConnectionTcpAbridged,
             auto_reconnect=True,
             connection_retries=None,
-        ).start(bot_token=BOT_TOKEN)
+        ).start(bot_token=gvarstatus("BOT_TOKEN"))
 
         dugmeler = CMD_HELP
         user = bot.get_me()
