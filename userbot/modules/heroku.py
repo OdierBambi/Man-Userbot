@@ -197,18 +197,18 @@ async def dyno_usage(dyno):
 
 @bot.on(man_cmd(outgoing=True, pattern=r"usange(?: |$)"))
 async def fake_dyno(event):
-      await event.edit(
-            "✥ **Informasi Dyno Heroku :**"
-            "\n╔════════════════════╗\n"
-            f" ➠ **Penggunaan Dyno** `{app.name}` :\n"
-            f"     •  `0`**Jam**  `0`**Menit**  "
-            f"**|**  [`0`**%**]"
-            "\n◖════════════════════◗\n"
-            " ➠ **Sisa kuota dyno bulan ini** :\n"
-            f"     •  `1000`**Jam**  `0`**Menit**  "
-            f"**|**  [`100`**%**]"
-            "\n╚════════════════════╝\n"
-        )
+    await event.edit(
+        "✥ **Informasi Dyno Heroku :**"
+        "\n╔════════════════════╗\n"
+        f" ➠ **Penggunaan Dyno** `{app.name}` :\n"
+        f"     •  `0`**Jam**  `0`**Menit**  "
+        f"**|**  [`0`**%**]"
+        "\n◖════════════════════◗\n"
+        " ➠ **Sisa kuota dyno bulan ini** :\n"
+        f"     •  `1000`**Jam**  `0`**Menit**  "
+        f"**|**  [`100`**%**]"
+        "\n╚════════════════════╝\n"
+    )
 
 
 @bot.on(man_cmd(outgoing=True, pattern=r"logs"))
