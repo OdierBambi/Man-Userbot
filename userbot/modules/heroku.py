@@ -116,7 +116,7 @@ async def set_var(var):
                 "**#SET #VAR_HEROKU #ADDED**\n\n"
                 f"`{variable}` **=** `{value}`",
             )
-        await var.edit("`Menambahkan Config Vars...`")
+        await var.edit("**Berhasil Menambahkan Config Var**")
     heroku_var[variable] = value
 
 
@@ -125,7 +125,7 @@ async def set_var(var):
 """
 
 
-@bot.on(man_cmd(outgoing=True, pattern=r"usage(?: |$)"))
+@bot.on(man_cmd(outgoing=True, pattern=r"(usage|kuota)(?: |$)"))
 async def dyno_usage(dyno):
     if app is None:
         return await dyno.edit(
@@ -223,7 +223,7 @@ async def getsql(event):
             f"**Invalid Syntax !!** \n\nKetik `{cmd}getsql NAMA_VARIABLE`"
         )
     if var_ not in heroku_var:
-        return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
+        return await xxnx.edit("**Tidak Dapat Menemukan Config Var**")
     try:
         sql_v = gvarstatus(var_)
         os_v = os.environ.get(var_) or "None"
@@ -243,14 +243,14 @@ async def setsql(event):
     xxnx = await edit_or_reply(event, f"**Setting variable** `{var_}` **as** `{valu}`")
     if var_ == "":
         return await xxnx.edit(
-            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`"
+            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME value`"
         )
     elif valu == "":
         return await xxnx.edit(
-            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`"
+            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME value`"
         )
     if var_ not in heroku_var:
-        return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
+        return await xxnx.edit("**Tidak Dapat Menemukan Config Var**")
     try:
         addgvar(var_, valu)
     except Exception as e:
@@ -267,7 +267,7 @@ async def delsql(event):
             f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}delsql VARIABLE_NAME`"
         )
     if var_ not in heroku_var:
-        return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
+        return await xxnx.edit("**Tidak Dapat Menemukan Config Var**")
     try:
         delgvar(var_)
     except Exception as e:
@@ -278,16 +278,30 @@ async def delsql(event):
 CMD_HELP.update(
     {
         "heroku": f"**Plugin : **`heroku`\
-        \n\n  •  **Syntax :** `{cmd}usage`\
-        \n  •  **Function : **Check Kouta Dyno Heroku\
         \n\n  •  **Syntax :** `{cmd}set var <nama var> <value>`\
-        \n  •  **Function : **Tambahkan Variabel Baru Atau Memperbarui Variabel\n Setelah Menyetel Variabel Man-Userbot Akan Di Restart.\
+        \n  •  **Function : **Tambahkan Variabel Baru Atau Memperbarui Variabel Setelah Menyetel Variabel Man-Userbot Akan Di Restart.\
         \n\n  •  **Syntax :** `{cmd}get var or .get var <nama var>`\
-        \n  •  **Function : **Dapatkan Variabel Yang Ada,Harap Gunakan Di Grup Private Anda! Ini Untuk Mengembalikan Informasi Heroku Pribadi Anda.\
+        \n  •  **Function : **Dapatkan Variabel Yang Ada,Harap Gunakan Di Grup Private Anda!\
         \n\n  •  **Syntax :** `{cmd}del var <nama var>`\
         \n  •  **Function : **Untuk Menghapus var heroku\
+        \n\n  •  **Syntax :** `{cmd}usage` atau `{cmd}kuota`\
+        \n  •  **Function : **Check Kouta Dyno Heroku\
         \n\n  •  **Syntax :** `{cmd}usange`\
         \n  •  **Function : **Fake Check Kouta Dyno Heroku jadi 9989jam Untuk menipu temanmu wkwk\
+    "
+    }
+)
+
+
+CMD_HELP.update(
+    {
+        "sql": f"**Plugin : **`sql`\
+        \n\n  •  **Syntax :** `{cmd}setsql <nama var> <value>`\
+        \n  •  **Function : **Tambahkan Variabel SQL Tanpa Merestart userbot.\
+        \n\n  •  **Syntax :** `{cmd}getsql <nama var>`\
+        \n  •  **Function : **Dapatkan Variabel SQL Yang Ada Harap Gunakan Di Grup Private Anda!\
+        \n\n  •  **Syntax :** `{cmd}delsql <nama var>`\
+        \n  •  **Function : **Untuk Menghapus Variabel SQL\
     "
     }
 )
