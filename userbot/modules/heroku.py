@@ -222,7 +222,7 @@ async def getsql(event):
         return await xxnx.edit(
             f"**Invalid Syntax !!** \n\nKetik `{cmd}getsql NAMA_VARIABLE`"
         )
-   if var_ not in heroku_var:
+    if var_ not in heroku_var:
         return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
     try:
         sql_v = gvarstatus(var_)
