@@ -197,6 +197,7 @@ async def dyno_usage(dyno):
 
 @bot.on(man_cmd(outgoing=True, pattern=r"usange(?: |$)"))
 async def fake_dyno(event):
+    await event.edit("`Processing...`")
     await event.edit(
         "✥ **Informasi Dyno Heroku :**"
         "\n╔════════════════════╗\n"
