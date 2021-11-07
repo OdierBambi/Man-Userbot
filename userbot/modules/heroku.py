@@ -242,9 +242,13 @@ async def setsql(event):
     valu = " ".join(val_)
     xxnx = await edit_or_reply(event, f"**Setting variable** `{var_}` **as** `{valu}`")
     if var_ == "":
-        return await xxnx.edit(f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`")
+        return await xxnx.edit(
+            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`"
+        )
     elif valu == "":
-        return await xxnx.edit(f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`")
+        return await xxnx.edit(
+            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`"
+        )
     if var_ not in heroku_var:
         return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
     try:
@@ -259,7 +263,9 @@ async def delsql(event):
     var_ = event.pattern_match.group(1).upper()
     xxnx = await edit_or_reply(event, f"**Deleting Variable** `{var_}`")
     if var_ == "":
-        return await xxnx.edit(f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}delsql VARIABLE_NAME`")
+        return await xxnx.edit(
+            f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}delsql VARIABLE_NAME`"
+        )
     if var_ not in heroku_var:
         return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
     try:
