@@ -15,7 +15,7 @@ from userbot import BOTLOG, BOTLOG_CHATID
 from userbot import CMD_HANDLER as cmd
 from userbot import CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME, bot
 from userbot.events import man_cmd
-from userbot.modules.sql_helper.globals import gvarstatus
+from userbot.modules.sql_helper.globals import addgvar, delgvar, gvarstatus
 from userbot.utils import edit_or_reply
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -214,22 +214,59 @@ async def _(dyno):
     return os.remove("Logs.txt")
 
 
-@bot.on(man_cmd(outgoing=True, pattern=r"gvar ?(.*)"))
-async def gett(event):
+@bot.on(man_cmd(outgoing=True, pattern=r"getsql ?(.*)"))
+async def getsql(event):
     var_ = event.pattern_match.group(1).upper()
     xxnx = await edit_or_reply(event, f"**Getting variable** `{var_}`")
     if var_ == "":
         return await xxnx.edit(
-            f"**Invalid Syntax !!** \n\nTry: `{hl}gvar VARIABLE_NAME`"
+            f"**Invalid Syntax !!** \n\nKetik `{cmd}getsql NAMA_VARIABLE`"
         )
+   if var_ not in heroku_var:
+        return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
     try:
         sql_v = gvarstatus(var_)
         os_v = os.environ.get(var_) or "None"
     except Exception as e:
-        return await xxnx.edit(f"**ERROR !!** \n\n`{e}`")
+        return await xxnx.edit(f"**ERROR !!**\n\n`{e}`")
     await xxnx.edit(
         f"**OS VARIABLE:** `{var_}`\n**OS VALUE :** `{os_v}`\n------------------\n**SQL VARIABLE:** `{var_}`\n**SQL VALUE :** `{sql_v}`\n"
     )
+
+
+@bot.on(man_cmd(outgoing=True, pattern=r"setsql ?(.*)"))
+async def setsql(event):
+    hel_ = event.pattern_match.group(1)
+    var_ = hel_.split(" ")[0].upper()
+    val_ = hel_.split(" ")[1:]
+    valu = " ".join(val_)
+    xxnx = await edit_or_reply(event, f"**Setting variable** `{var_}` **as** `{valu}`")
+    if var_ == "":
+        return await xxnx.edit(f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`")
+    elif valu == "":
+        return await xxnx.edit(f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}setsql VARIABLE_NAME variable_value`")
+    if var_ not in heroku_var:
+        return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
+    try:
+        addgvar(var_, valu)
+    except Exception as e:
+        return await xxnx.edit(f"**ERROR !!** \n\n`{e}`")
+    await xxnx.edit(f"**Variable** `{var_}` **successfully added with value** `{valu}`")
+
+
+@bot.on(man_cmd(outgoing=True, pattern=r"delsql ?(.*)"))
+async def delsql(event):
+    var_ = event.pattern_match.group(1).upper()
+    xxnx = await edit_or_reply(event, f"**Deleting Variable** `{var_}`")
+    if var_ == "":
+        return await xxnx.edit(f"**Invalid Syntax !!**\n\n**Ketik** `{cmd}delsql VARIABLE_NAME`")
+    if var_ not in heroku_var:
+        return await xxnx.edit("**Tidak Dapat Menemukan Config Vars**")
+    try:
+        delgvar(var_)
+    except Exception as e:
+        return await xxnx.edit(f"**ERROR !!**\n\n`{e}`")
+    await xxnx.edit(f"**Deleted Variable** `{var_}`")
 
 
 CMD_HELP.update(
